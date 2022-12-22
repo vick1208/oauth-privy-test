@@ -1,0 +1,216 @@
+{
+	"info": {
+		"_postman_id": "976880e5-61be-4cf6-a128-9ef6c575eaa5",
+		"name": "Oauth Privy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24878274"
+	},
+	"item": [
+		{
+			"name": "Obtain auth code",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Base url oauth}}/oauth/authorize?client_id={{CLIENT_ID}}&redirect_uri={{REDIRECT_URI}}&scope={{SCOPE}}&response_type=code&register=true",
+					"host": [
+						"{{Base url oauth}}"
+					],
+					"path": [
+						"oauth",
+						"authorize"
+					],
+					"query": [
+						{
+							"key": "client_id",
+							"value": "{{CLIENT_ID}}"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "{{REDIRECT_URI}}"
+						},
+						{
+							"key": "scope",
+							"value": "{{SCOPE}}"
+						},
+						{
+							"key": "response_type",
+							"value": "code"
+						},
+						{
+							"key": "register",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtain access token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "authorization_code",
+							"type": "text"
+						},
+						{
+							"key": "code",
+							"value": "RqYfTbujjeflfcXvPijM6zEBNjY27xh9RZVa5z-1jYc",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "{{CLIENT_ID}}",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "{{CLIENT SECRET}}",
+							"type": "text"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "{{REDIRECT_URI}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{Base url oauth}}/oauth/token",
+					"host": [
+						"{{Base url oauth}}"
+					],
+					"path": [
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtain user info",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzUxMiIsImtpZCI6IjZxampScTZsaW84b0xCbzFHcnU2bFVzVV9Yb1VUWEN2R0o1UUxRYzZWY1kifQ.eyJpc3MiOiJQcml2eUlEIFByb3ZpZGVyIiwic3ViIjoiUHJpdnlJRCBQcm92aWRlciIsImlhdCI6MTY3MTYxMTk4MiwiZXhwIjoxNjcxNjE5MTgyLCJqdGkiOiIyZDUyZGI2Yi04NzNiLTRiOTktOTdjNS0wY2RkYmQxMzczOTciLCJ1aWQiOiJWQVM3MDE3IiwidXNlciI6eyJwcml2eUlkIjoiVkFTNzAxNyIsInV1aWQiOiJjYTU2YmE2MS02NjZmLTRhOTItOTlhYS04OGM1NjExMGQ1YjgifSwiY2xhaW1zIjpbInJlYWQiXX0.EaddQT2mY5Hnzyb7R41zdiur0WMACtsU2xs25UEYaJI0GgdQLg2bSRwEgfk7xoJfqwtOzL4LOBr0WTr1MO-y-4yh-NPb2S_5LUz1mjZ3VpfTH7nrwW7a7hvmc0A1PLxs9LJvxiDcYgez5yjjg28RE1cet5_MtjEYrvLIqVuFopLgLmmy4KSWvji-zDJQLaZf_3LGEolemL1YbvI15sb99wwIdQK9JXDeKu3aHsosP171YSj-u3MfN9R9gipueex9sDvIwW82p2Qf2ImdotQoRsKOsdZiP7ngYn_CjSQJVBbLYCFE2Nu5daXZ67zMrvjVB5l3li1VO6wUfd9KjTemCQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Merchant base url}}/v1/users/identity",
+					"host": [
+						"{{Merchant base url}}"
+					],
+					"path": [
+						"v1",
+						"users",
+						"identity"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtain refresh token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "refresh_token",
+							"type": "text"
+						},
+						{
+							"key": "refresh_token",
+							"value": "o12hyF2hC_Jl-Bsga4iE61sni-0-gI9EuMG1AgvFzPM",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "{{CLIENT_ID}}",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "{{CLIENT SECRET}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{Base url oauth}}/oauth/token",
+					"host": [
+						"{{Base url oauth}}"
+					],
+					"path": [
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "Base url oauth",
+			"value": "https://oauth.privy.id"
+		},
+		{
+			"key": "CLIENT_ID",
+			"value": "6qjjRq6lio8oLBo1Gru6lUsU_XoUTXCvGJ5QLQc6VcY"
+		},
+		{
+			"key": "REDIRECT_URI",
+			"value": "https://oauthdebugger.com/debug"
+		},
+		{
+			"key": "SCOPE",
+			"value": "read"
+		},
+		{
+			"key": "CLIENT SECRET",
+			"value": "eOQWswnKgfggPM89YmsD0twvl_voKbJjSYlMnt-ODBg"
+		},
+		{
+			"key": "Merchant base url",
+			"value": "https://core.privypass.id/merchant"
+		}
+	]
+}
